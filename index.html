@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Digitama — Jasa Website Sederhana untuk UMKM</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Crect width='200' height='200' rx='40' fill='%2316324F'/%3E%3Crect x='18' y='18' width='164' height='164' rx='28' fill='%23FFFFFF'/%3E%3Ccircle cx='46' cy='46' r='6' fill='%23C9A24B'/%3E%3Ccircle cx='66' cy='46' r='6' fill='%231E7F72'/%3E%3Ccircle cx='86' cy='46' r='6' fill='%2316324F'/%3E%3Crect x='108' y='120' width='16' height='34' rx='3' fill='%2316324F'/%3E%3Crect x='132' y='104' width='16' height='50' rx='3' fill='%231E7F72'/%3E%3Crect x='156' y='82' width='16' height='72' rx='3' fill='%23C9A24B'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -31,9 +32,8 @@
 
   /* NAV */
   nav{display:flex;align-items:center;justify-content:space-between;padding:26px 0;}
-  .brand{display:flex;align-items:center;gap:10px;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1.2rem;color:var(--navy);}
-  .brand .dot-icon{width:30px;height:30px;border-radius:8px;background:var(--navy);position:relative;flex-shrink:0;}
-  .brand .dot-icon i{position:absolute;width:4px;height:4px;border-radius:50%;top:7px;}
+  .brand{display:flex;align-items:center;gap:11px;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1.25rem;color:var(--navy);}
+  .brand svg{flex-shrink:0;border-radius:9px;box-shadow:0 4px 10px -4px rgba(22,50,79,0.35);}
   .navlinks{display:flex;gap:30px;font-size:.94rem;font-weight:500;color:var(--ink);}
   .navlinks a:hover{color:var(--teal);}
   .btn{display:inline-flex;align-items:center;gap:8px;padding:12px 22px;border-radius:9px;font-weight:600;font-size:.92rem;}
@@ -117,7 +117,9 @@
   .cta-final p{color:#B9C6CE;margin-top:8px;max-width:34ch;}
   .cta-final .btn-primary{background:var(--gold);color:var(--navy-deep);}
 
-  footer{padding:36px 0 50px;display:flex;justify-content:space-between;font-size:.86rem;color:var(--ink-soft);flex-wrap:wrap;gap:10px;border-top:1px solid var(--line);margin-top:20px;}
+  footer{padding:40px 0 54px;display:flex;justify-content:space-between;align-items:center;font-size:.86rem;color:var(--ink-soft);flex-wrap:wrap;gap:14px;border-top:1px solid var(--line);margin-top:20px;}
+  .footer-brand{display:flex;align-items:center;gap:9px;font-family:'Space Grotesk',sans-serif;font-weight:700;color:var(--navy);}
+  .footer-brand svg{border-radius:6px;}
 
   @media(max-width:820px){
     .hero{grid-template-columns:1fr;padding-top:20px;}
@@ -137,14 +139,26 @@
 <div class="wrap">
 
   <nav>
-    <div class="brand"><span class="dot-icon"><i style="left:6px;background:var(--gold);"></i><i style="left:13px;background:var(--teal);"></i><i style="left:20px;background:#fff;"></i></span>Digitama</div>
+    <div class="brand">
+      <svg width="34" height="34" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+        <rect width="200" height="200" rx="40" fill="#16324F"/>
+        <rect x="18" y="18" width="164" height="164" rx="28" fill="#FFFFFF"/>
+        <circle cx="46" cy="46" r="6" fill="#C9A24B"/>
+        <circle cx="66" cy="46" r="6" fill="#1E7F72"/>
+        <circle cx="86" cy="46" r="6" fill="#16324F"/>
+        <rect x="108" y="120" width="16" height="34" rx="3" fill="#16324F"/>
+        <rect x="132" y="104" width="16" height="50" rx="3" fill="#1E7F72"/>
+        <rect x="156" y="82" width="16" height="72" rx="3" fill="#C9A24B"/>
+      </svg>
+      Digitama
+    </div>
     <div class="navlinks">
       <a href="#kenapa">Kenapa Perlu</a>
       <a href="#paket">Paket &amp; Harga</a>
       <a href="#proses">Cara Kerja</a>
       <a href="#portofolio">Contoh Hasil</a>
     </div>
-    <a href="https://wa.me/6285711467985?text=Halo%20Digitama%2C%20saya%20mau%20konsultasi%20gratis%20soal%20pembuatan%20website%20untuk%20usaha%20saya." target="_blank" class="btn btn-ghost">Konsultasi Gratis</a>
+    <a href="https://wa.me/6285711467985?text=Halo%20Digitama%2C%20saya%20mau%20konsultasi%20gratis%20soal%20pembuatan%20website%20untuk%20usaha%20saya." target="_blank" class="btn btn-ghost">Hubungi Kami</a>
   </nav>
 
   <section class="hero">
@@ -274,12 +288,24 @@
       <h2>Siap bikin usahamu tampil di internet?</h2>
       <p>Konsultasi dulu, gratis dan tanpa komitmen.</p>
     </div>
-    <a href="https://wa.me/6285711467985?text=Halo%20Digitama%2C%20saya%20mau%20konsultasi%20soal%20pembuatan%20website%20untuk%20usaha%20saya." target="_blank" class="btn btn-primary">Chat WhatsApp Digitama →</a>
+    <a href="https://wa.me/6285711467985?text=Halo%20Digitama%2C%20saya%20mau%20konsultasi%20soal%20pembuatan%20website%20untuk%20usaha%20saya." target="_blank" class="btn btn-primary">Mulai Sekarang →</a>
   </div>
 
   <footer>
-    <div>© 2026 Digitama</div>
-    <div><a href="https://wa.me/6285711467985" target="_blank" style="text-decoration:underline;">+62 857-1146-7985</a> · @digitama.id</div>
+    <div class="footer-brand">
+      <svg width="22" height="22" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+        <rect width="200" height="200" rx="40" fill="#16324F"/>
+        <rect x="18" y="18" width="164" height="164" rx="28" fill="#FFFFFF"/>
+        <circle cx="46" cy="46" r="6" fill="#C9A24B"/>
+        <circle cx="66" cy="46" r="6" fill="#1E7F72"/>
+        <circle cx="86" cy="46" r="6" fill="#16324F"/>
+        <rect x="108" y="120" width="16" height="34" rx="3" fill="#16324F"/>
+        <rect x="132" y="104" width="16" height="50" rx="3" fill="#1E7F72"/>
+        <rect x="156" y="82" width="16" height="72" rx="3" fill="#C9A24B"/>
+      </svg>
+      Digitama
+    </div>
+    <div>© 2026 · <a href="https://wa.me/6285711467985" target="_blank" style="text-decoration:underline;">+62 857-1146-7985</a> · @digitama.id</div>
   </footer>
 
 </div>
