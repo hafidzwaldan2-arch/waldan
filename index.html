@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Digitama — Jasa Website Sederhana untuk UMKM</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#16324F;
+    --navy-deep:#0F2337;
+    --teal:#1E7F72;
+    --gold:#C9A24B;
+    --paper:#F7F3EA;
+    --ink:#20303E;
+    --ink-soft:#5B6B78;
+    --line:rgba(22,50,79,0.14);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    line-height:1.55;
+  }
+  h1,h2,h3{font-family:'Space Grotesk',sans-serif;color:var(--navy);line-height:1.12;}
+  a{color:inherit;text-decoration:none;}
+  .wrap{max-width:1100px;margin:0 auto;padding:0 32px;}
+  img,svg{display:block;max-width:100%;}
+
+  /* NAV */
+  nav{display:flex;align-items:center;justify-content:space-between;padding:26px 0;}
+  .brand{display:flex;align-items:center;gap:10px;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1.2rem;color:var(--navy);}
+  .brand .dot-icon{width:30px;height:30px;border-radius:8px;background:var(--navy);position:relative;flex-shrink:0;}
+  .brand .dot-icon i{position:absolute;width:4px;height:4px;border-radius:50%;top:7px;}
+  .navlinks{display:flex;gap:30px;font-size:.94rem;font-weight:500;color:var(--ink);}
+  .navlinks a:hover{color:var(--teal);}
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:12px 22px;border-radius:9px;font-weight:600;font-size:.92rem;}
+  .btn-primary{background:var(--teal);color:#fff;}
+  .btn-ghost{border:1.5px solid var(--navy);color:var(--navy);}
+
+  /* HERO */
+  .hero{display:grid;grid-template-columns:1.05fr 0.95fr;gap:56px;padding:64px 0 88px;align-items:center;}
+  .hero h1{font-size:3.1rem;max-width:11ch;margin-bottom:22px;}
+  .hero p{font-size:1.08rem;color:var(--ink-soft);max-width:42ch;margin-bottom:30px;}
+  .hero .cta-row{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:28px;}
+  .hero .trust{font-size:.88rem;color:var(--ink-soft);}
+  .hero .trust b{color:var(--navy);}
+
+  /* browser mockup visual */
+  .mockup{background:#fff;border-radius:14px;box-shadow:0 30px 60px -24px rgba(15,35,55,0.35);overflow:hidden;border:1px solid var(--line);}
+  .mockup .chrome{background:#EDE7D8;padding:10px 14px;display:flex;gap:6px;}
+  .mockup .chrome span{width:9px;height:9px;border-radius:50%;background:#C7BEA6;}
+  .mockup .screen{padding:22px;background:linear-gradient(180deg,#FAF7EF,#F3EEDD);}
+  .mockup .row1{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;}
+  .mockup .mini-logo{width:20px;height:20px;border-radius:5px;background:var(--navy);}
+  .mockup .mini-nav{display:flex;gap:10px;}
+  .mockup .mini-nav span{width:28px;height:6px;border-radius:3px;background:#D8CFB4;}
+  .mockup h4{font-size:1.3rem;color:var(--navy);max-width:12ch;margin-bottom:8px;}
+  .mockup .fake-line{height:7px;border-radius:4px;background:#E1D8BE;margin-bottom:8px;}
+  .mockup .fake-line.short{width:60%;}
+  .mockup .cta-mini{margin-top:14px;display:inline-block;background:#B5341F;color:#fff;font-size:.72rem;padding:8px 16px;border-radius:6px;}
+  .mockup .swatches{display:flex;gap:8px;margin-top:18px;}
+  .mockup .swatches div{width:44px;height:44px;border-radius:8px;}
+
+  /* SECTIONS */
+  section{padding:70px 0;}
+  .section-tight{padding:36px 0 70px;}
+  .lead-row{display:grid;grid-template-columns:0.9fr 1.1fr;gap:50px;align-items:start;margin-bottom:44px;}
+  .lead-row h2{font-size:2.1rem;max-width:12ch;}
+  .lead-row p{color:var(--ink-soft);font-size:1.02rem;}
+
+  .reason-list{display:flex;flex-direction:column;}
+  .reason{display:grid;grid-template-columns:64px 1fr;gap:22px;padding:26px 0;border-top:1px solid var(--line);}
+  .reason:last-child{border-bottom:1px solid var(--line);}
+  .reason .num{font-family:'Space Grotesk',sans-serif;font-size:1.3rem;color:var(--gold);font-weight:700;}
+  .reason h3{font-size:1.15rem;margin-bottom:6px;}
+  .reason p{color:var(--ink-soft);font-size:.98rem;max-width:60ch;}
+
+  /* PRICING */
+  .price-grid{display:grid;grid-template-columns:1fr 1.08fr 1fr;gap:0;border:1px solid var(--line);border-radius:16px;overflow:hidden;}
+  .price-col{background:#fff;padding:34px 28px;border-left:1px solid var(--line);}
+  .price-col:first-child{border-left:none;}
+  .price-col.featured{background:var(--navy);color:#fff;transform:scale(1.04);position:relative;z-index:2;box-shadow:0 24px 48px -20px rgba(15,35,55,0.45);}
+  .price-col.featured h3, .price-col.featured .amount{color:#fff;}
+  .price-col.featured .featured-tag{position:absolute;top:-1px;right:20px;background:var(--gold);color:var(--navy-deep);font-size:.72rem;font-weight:600;padding:5px 12px;border-radius:0 0 8px 8px;}
+  .price-col h3{font-size:1.15rem;margin-bottom:4px;}
+  .price-col .amount{font-family:'Space Grotesk',sans-serif;font-size:2rem;font-weight:700;color:var(--navy);margin:10px 0 18px;}
+  .price-col .amount span{font-size:.9rem;font-weight:500;color:var(--ink-soft);}
+  .price-col.featured .amount span{color:#C9D3DA;}
+  .price-col ul{list-style:none;font-size:.92rem;}
+  .price-col li{padding:7px 0;border-top:1px solid rgba(0,0,0,0.06);color:var(--ink-soft);}
+  .price-col.featured li{border-top:1px solid rgba(255,255,255,0.14);color:#D9E1E6;}
+  .price-col li:first-child{border-top:none;}
+
+  /* PROCESS */
+  .process{counter-reset:step;}
+  .step{display:flex;gap:22px;padding:22px 0;}
+  .step .marker{font-family:'Space Grotesk',sans-serif;font-weight:700;color:var(--teal);font-size:1.1rem;width:34px;flex-shrink:0;}
+  .step h3{font-size:1.08rem;margin-bottom:4px;}
+  .step p{color:var(--ink-soft);font-size:.96rem;}
+  .step-line{border-left:2px dashed var(--line);margin-left:16px;height:14px;}
+
+  /* PORTFOLIO */
+  .portfolio-card{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:#fff;}
+  .portfolio-visual{background:linear-gradient(135deg,#FBF4E7,#F1E7CE);padding:36px;display:flex;align-items:center;justify-content:center;}
+  .portfolio-visual .plate{width:120px;height:120px;border-radius:20px;background:#B5341F;display:flex;align-items:center;justify-content:center;font-size:3rem;box-shadow:0 18px 30px -14px rgba(181,52,31,0.5);}
+  .portfolio-text{padding:38px;}
+  .portfolio-text h3{font-size:1.3rem;margin-bottom:10px;}
+  .portfolio-text p{color:var(--ink-soft);font-size:.98rem;margin-bottom:16px;}
+  .portfolio-text .tag{display:inline-block;background:#EDE7D8;color:var(--navy);font-size:.78rem;padding:5px 12px;border-radius:6px;margin-bottom:16px;}
+
+  /* CTA / FOOTER */
+  .cta-final{background:var(--navy-deep);color:#fff;border-radius:22px;padding:56px 48px;display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;}
+  .cta-final h2{color:#fff;font-size:1.9rem;max-width:16ch;}
+  .cta-final p{color:#B9C6CE;margin-top:8px;max-width:34ch;}
+  .cta-final .btn-primary{background:var(--gold);color:var(--navy-deep);}
+
+  footer{padding:36px 0 50px;display:flex;justify-content:space-between;font-size:.86rem;color:var(--ink-soft);flex-wrap:wrap;gap:10px;border-top:1px solid var(--line);margin-top:20px;}
+
+  @media(max-width:820px){
+    .hero{grid-template-columns:1fr;padding-top:20px;}
+    .hero h1{font-size:2.3rem;}
+    .lead-row{grid-template-columns:1fr;}
+    .price-grid{grid-template-columns:1fr;border-radius:16px;}
+    .price-col{border-left:none;border-top:1px solid var(--line);}
+    .price-col:first-child{border-top:none;}
+    .price-col.featured{transform:none;}
+    .portfolio-card{grid-template-columns:1fr;}
+    .navlinks{display:none;}
+    .cta-final{flex-direction:column;text-align:center;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <nav>
+    <div class="brand"><span class="dot-icon"><i style="left:6px;background:var(--gold);"></i><i style="left:13px;background:var(--teal);"></i><i style="left:20px;background:#fff;"></i></span>Digitama</div>
+    <div class="navlinks">
+      <a href="#kenapa">Kenapa Perlu</a>
+      <a href="#paket">Paket &amp; Harga</a>
+      <a href="#proses">Cara Kerja</a>
+      <a href="#portofolio">Contoh Hasil</a>
+    </div>
+    <a href="#kontak" class="btn btn-ghost">Konsultasi Gratis</a>
+  </nav>
+
+  <section class="hero">
+    <div>
+      <h1>Usaha kecil, tampil profesional di dunia digital.</h1>
+      <p>Digitama membantu UMKM sekitar punya website sendiri — cepat, terjangkau, dan langsung bisa dipakai promosi ke pelanggan.</p>
+      <div class="cta-row">
+        <a href="#kontak" class="btn btn-primary">Konsultasi via WhatsApp</a>
+        <a href="#paket" class="btn btn-ghost">Lihat Paket Harga</a>
+      </div>
+      <p class="trust">Mulai dari <b>Rp75.000</b> · Selesai <b>2–4 hari kerja</b> · Gratis <b>2x revisi</b></p>
+    </div>
+    <div class="mockup">
+      <div class="chrome"><span></span><span></span><span></span></div>
+      <div class="screen">
+        <div class="row1">
+          <div class="mini-logo"></div>
+          <div class="mini-nav"><span></span><span></span><span></span></div>
+        </div>
+        <h4>Nasi padang rasa rumah, langsung dari dapur.</h4>
+        <div class="fake-line"></div>
+        <div class="fake-line short"></div>
+        <span class="cta-mini">Pesan via WhatsApp</span>
+        <div class="swatches">
+          <div style="background:#D69A1F;"></div>
+          <div style="background:#5C6E4B;"></div>
+          <div style="background:#B5341F;"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="kenapa">
+    <div class="lead-row">
+      <h2>Kenapa UMKM sekarang butuh website?</h2>
+      <p>Sebelum datang ke toko atau memesan lewat WhatsApp, kebanyakan orang mencari usaha itu dulu di internet. Tanpa website, usaha yang sebenarnya bagus bisa kalah kelihatan dibanding kompetitor yang lebih dulu tampil digital.</p>
+    </div>
+    <div class="reason-list">
+      <div class="reason">
+        <div class="num">1</div>
+        <div><h3>Lebih mudah ditemukan</h3><p>Calon pelanggan bisa langsung melihat produk, harga, dan lokasi tanpa perlu bertanya dulu lewat chat.</p></div>
+      </div>
+      <div class="reason">
+        <div class="num">2</div>
+        <div><h3>Kelihatan lebih terpercaya</h3><p>Usaha dengan website rapi memberi kesan lebih serius dibanding yang hanya mengandalkan status WhatsApp.</p></div>
+      </div>
+      <div class="reason">
+        <div class="num">3</div>
+        <div><h3>Bisa dibagikan ke mana saja</h3><p>Satu tautan bisa disebar ke Instagram bio, grup WhatsApp, sampai dicetak di kartu nama atau banner.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="paket">
+    <div class="lead-row" style="margin-bottom:32px;">
+      <h2>Paket yang bisa dipilih</h2>
+      <p>Semua paket sudah termasuk desain responsif (tampil rapi di HP maupun komputer) dan tombol hubungi langsung ke WhatsApp.</p>
+    </div>
+    <div class="price-grid">
+      <div class="price-col">
+        <h3>Basic</h3>
+        <div class="amount">Rp75rb<span> /website</span></div>
+        <ul>
+          <li>1 halaman profil usaha</li>
+          <li>Informasi kontak &amp; lokasi</li>
+          <li>Tombol WhatsApp</li>
+          <li>2x revisi gratis</li>
+        </ul>
+      </div>
+      <div class="price-col featured">
+        <span class="featured-tag">Paling laris</span>
+        <h3>Standar</h3>
+        <div class="amount">Rp125rb<span> /website</span></div>
+        <ul>
+          <li>Semua di paket Basic</li>
+          <li>Galeri produk (maks. 6 foto)</li>
+          <li>Peta lokasi tertanam</li>
+          <li>2x revisi gratis</li>
+        </ul>
+      </div>
+      <div class="price-col">
+        <h3>Premium</h3>
+        <div class="amount">Rp175rb<span> /website</span></div>
+        <ul>
+          <li>Semua di paket Standar</li>
+          <li>Tema warna sesuai brand</li>
+          <li>1 halaman tambahan (mis. daftar harga)</li>
+          <li>2x revisi gratis</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="proses">
+    <div class="lead-row" style="margin-bottom:10px;">
+      <h2>Cara kerjanya</h2>
+      <p>Prosesnya singkat — dari konsultasi awal sampai website siap dipakai hanya butuh 2 sampai 4 hari kerja.</p>
+    </div>
+    <div class="process">
+      <div class="step"><div class="marker">1</div><div><h3>Konsultasi kebutuhan</h3><p>Diskusi singkat lewat WhatsApp tentang jenis usaha dan paket yang cocok.</p></div></div>
+      <div class="step-line"></div>
+      <div class="step"><div class="marker">2</div><div><h3>Kirim bahan</h3><p>Kamu kirim nama usaha, produk, foto, dan kontak yang mau ditampilkan.</p></div></div>
+      <div class="step-line"></div>
+      <div class="step"><div class="marker">3</div><div><h3>Pengerjaan</h3><p>Website dibuat sesuai paket yang dipilih, biasanya 2–4 hari kerja.</p></div></div>
+      <div class="step-line"></div>
+      <div class="step"><div class="marker">4</div><div><h3>Revisi &amp; serah terima</h3><p>Cek hasilnya, revisi bila perlu (maks. 2x), lalu tautan website siap dipakai.</p></div></div>
+    </div>
+  </section>
+
+  <section id="portofolio">
+    <div class="lead-row" style="margin-bottom:32px;">
+      <h2>Contoh hasil kerja</h2>
+      <p>Salah satu contoh website yang sudah dibuat menggunakan paket Standar.</p>
+    </div>
+    <div class="portfolio-card">
+      <div class="portfolio-visual"><div class="plate">🍛</div></div>
+      <div class="portfolio-text">
+        <span class="tag">Paket Standar</span>
+        <h3>Warung Bu Sari — Nasi Padang Rumahan</h3>
+        <p>Website profil usaha lengkap dengan menu andalan, cerita singkat usaha, dan lokasi — dibuat agar pelanggan lama maupun baru bisa langsung memesan lewat WhatsApp.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="cta-final" id="kontak">
+    <div>
+      <h2>Siap bikin usahamu tampil di internet?</h2>
+      <p>Konsultasi dulu, gratis dan tanpa komitmen.</p>
+    </div>
+    <a href="#" class="btn btn-primary">Chat WhatsApp Digitama →</a>
+  </div>
+
+  <footer>
+    <div>© 2026 Digitama</div>
+    <div>0812-xxxx-xxxx · @digitama.id</div>
+  </footer>
+
+</div>
+</body>
+</html>
