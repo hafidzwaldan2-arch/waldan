@@ -23,6 +23,9 @@ const portfolioData = [
   }
 ];
 
+// Google Apps Script URL - GANTI DENGAN URL DEPLOYMENT KAMU
+const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyc1pUKC29e4T9tzBSj1oUP2c_dz9EO2TbOzZ0raZqm-bvJrXdLXDyvBsCLezqws/usercurrentenv";
+
 // Render Portfolio
 function renderPortfolio() {
   const portfolioGrid = document.querySelector('.portfolio-grid');
@@ -56,24 +59,31 @@ function initForm() {
       email: form.querySelector('[name="email"]').value,
       business: form.querySelector('[name="business"]').value,
       package: form.querySelector('[name="package"]').value,
-      message: form.querySelector('[name="message"]').value,
-      date: new Date().toISOString()
+      message: form.querySelector('[name="message"]').value || ""
     };
     
     try {
-      // Simulate form submission
-      showMessage('success', 'Terima kasih! Kami akan segera menghubungi Anda.');
-      form.reset();
+      // Kirim ke Google Apps Script
+      const response = await fetch(APPS_SCRIPT_URL, {
+        method: 'POST',
+        body: JSON.stringify(formData)
+      });
       
-      // Log data (dalam production, kirim ke server)
-      console.log('Form submitted:', formData);
+      const result = await response.json();
       
-      // Optional: Kirim ke WhatsApp juga
-      setTimeout(() => {
-        const waMessage = `Halo Digitama, saya ${formData.name} dari ${formData.business}. Saya tertarik dengan paket ${formData.package}. ${formData.message}`;
-        const waLink = `https://wa.me/6285711467985?text=${encodeURIComponent(waMessage)}`;
-        window.open(waLink, '_blank');
-      }, 1500);
+      if (result.status === 'success') {
+        showMessage('success', 'Terima kasih! Kami akan segera menghubungi Anda. Redirecting ke WhatsApp...');
+        form.reset();
+        
+        // Redirect ke WhatsApp setelah 2 detik
+        setTimeout(() => {
+          const waMessage = `Halo Digitama, saya ${formData.name} dari ${formData.business}. Saya tertarik dengan paket ${formData.package}. ${formData.message}`;
+          const waLink = `https://wa.me/6285711467985?text=${encodeURIComponent(waMessage)}`;
+          window.open(waLink, '_blank');
+        }, 2000);
+      } else {
+        showMessage('error', 'Terjadi kesalahan. Silakan coba lagi.');
+      }
     } catch (error) {
       showMessage('error', 'Terjadi kesalahan. Silakan coba lagi.');
       console.error('Error:', error);
@@ -87,12 +97,25 @@ function showMessage(type, text) {
   if (!messageEl) {
     messageEl = document.createElement('div');
     messageEl.className = 'form-message';
-    document.querySelector('.consultation-form').insertBefore(messageEl, document.querySelector('.consultation-form').firstChild);
+    const form = document.querySelector('.consultation-form');
+    form.parentNode.insertBefore(messageEl, form);
   }
   
   messageEl.className = `form-message ${type}`;
   messageEl.textContent = text;
   messageEl.style.display = 'block';
+  
+  if (type === 'success') {
+    messageEl.style.backgroundColor = '#10b981';
+    messageEl.style.color = 'white';
+  } else {
+    messageEl.style.backgroundColor = '#ef4444';
+    messageEl.style.color = 'white';
+  }
+  messageEl.style.padding = '12px 16px';
+  messageEl.style.borderRadius = '8px';
+  messageEl.style.marginBottom = '16px';
+  messageEl.style.fontWeight = '500';
   
   setTimeout(() => {
     messageEl.style.display = 'none';
@@ -136,33 +159,17 @@ function initScrollAnimation() {
   });
 }
 
-// Mobile Menu Toggle (optional)
-function initMobileMenu() {
-  const brand = document.querySelector('.brand');
-  const navlinks = document.querySelector('.navlinks');
-  
-  // Bisa ditambah nanti kalau perlu mobile menu
-}
-
 // Initialize on DOM Ready
 document.addEventListener('DOMContentLoaded', () => {
   renderPortfolio();
   initForm();
   initSmoothScroll();
   initScrollAnimation();
-  initMobileMenu();
   
-  console.log('Digitama website initialized ✅');
+  console.log('✅ Digitama website initialized');
 });
 
-// Add Portofolio Helper (untuk tambah data baru nanti)
-function addPortfolio(project) {
-  portfolioData.push(project);
-  renderPortfolio();
-}
-
-// Export untuk digunakan di console
+// Export helper
 window.DigitamaApp = {
-  addPortfolio,
   portfolioData
 };
