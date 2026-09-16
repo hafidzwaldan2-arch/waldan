@@ -24,7 +24,7 @@ const portfolioData = [
 ];
 
 // Google Apps Script URL - GANTI DENGAN URL DEPLOYMENT KAMU
-const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyc1pUKC29e4T9tzBSj1oUP2c_dz9EO2TbOzZ0raZqm-bvJrXdLXDyvBsCLezqws/usercurrentenv";
+const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzD31_WawvpqAfivVdmJSpLf4N8BKSXQ1-5wtkRm137FCG7MVd4VhopayaOrWGYW6pLfA/exec";
 
 // Render Portfolio
 function renderPortfolio() {
